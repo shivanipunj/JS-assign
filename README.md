@@ -1,4 +1,4 @@
 # JS-assign
 
-![ss](./Screenshot (255).png)
-![ss](./Screenshot (256).png)
+![ss](./Screenshot%20(255).png)
+![ss](./Screenshot%20(256).png)
