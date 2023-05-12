@@ -1,0 +1,17 @@
+body {
+    background-image: url(../abc.avif);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.container {
+    background-color: rgba(94, 226, 215, 0.712);
+    padding: 30px;
+    margin: 6% auto;
+}
+
+table tr td img {
+    max-width: 18%;
+    border-radius: 100%;
+}

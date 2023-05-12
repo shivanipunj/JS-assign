@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <title>Login NOW</title>
+</head>
+
+<body>
+    <section class="login">
+        <div class="loginform">
+            <form>
+                <h2>User Login</h2>
+                <div class="email input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">@</span>
+                    <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                        aria-describedby="addon-wrapping" id="email">
+
+                </div>
+                <div class="password mb-2 input-group">
+                    <label for="inputPassword" class="col-sm-1 col-form-label">Password</label>
+                    <div class="col-mb-5">
+                        <input id="pass" type="password" name="" type="password" class="form-control"
+                            id="inputPassword">
+                        <span id="alert">wrong password</span>
+                        <span id="succes">Login done now Logout!!</span>
+                    </div>
+                </div>
+
+                <div class="loginbtn">
+                    <input id="submit" type="submit" name="" value="Login">
+                </div>
+
+                <a class="register" href="register.html">Register</a>
+            </form>
+        </div>
+    </section>
+
+
+
+
+    <script type="text/javascript">
+
+
+
+        const api_url = "https://reqres.in/api/login";
+        document.getElementById("submit").addEventListener("click", function (event) {
+            const email = document.getElementById("email").value;
+            const pass = document.getElementById("pass").value;
+            event.preventDefault()
+            if (email == "" || pass == "") {
+                alert("please fill Email And Password");
+                return false;
+            }
+            getUser(email, pass);
+
+        });
+        async function getUser(email, pass) {
+            const response = await fetch(api_url, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: pass,
+                }),
+            });
+
+            let result = await response.json();
+            console.log(result);
+            if (!result.error) {
+                alert("Login done now Logout!!");
+                window.sessionStorage.setItem("token", result.token);
+                setTimeout(() => { window.location = "index.html" }, 500)
+            } else {
+                alert(result.error);
+            }
+        }
+
+    </script>
+</body>
+
+</html>
